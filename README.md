@@ -8,6 +8,10 @@ It uses javascript with CSS animation and only works in modern browsers.
 
 The images are from Wikipedia.
 
+## Demo
+
+http://eldub10.github.io/MatchGame
+
 ## Installation
 
 ```
