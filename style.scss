@@ -1,0 +1,121 @@
+@import "bourbon";
+
+$white: #fff;
+$silver: #DFECEC;
+$green: #74967E;
+$blue: #3A7D98;
+
+body {
+	margin: 0;
+	background-color: $green;
+	@include background-image(linear-gradient(90deg, rgba(#fff, 0.1) 2px, transparent 2px));
+	background-size: 10px 10px;
+	font-family: 'Libre Baskerville';
+}
+#header {
+	height: 32px;
+	background-color: $blue;
+	border-bottom: 1px solid rgba(#000, 0.2);
+	padding: 10px 10px 0;
+	margin-bottom: 10px;
+	h2 {
+		color: $white;
+		font-weight: normal;
+		font-size: 16px;
+		margin: 0;
+		width: 33%;
+	}
+	#score {
+		float: left;
+		text-align: left;
+	}
+	#title {
+		float: left;
+		text-align: center;
+		font-size: 22px;
+		font-weight: bold;
+	}
+	#time {
+		float: right;
+		text-align: right;
+	}
+}
+#container {
+	position: relative;
+	margin: 0 auto;
+	max-width: 640px;
+	@include perspective(1000px);
+}
+.card {
+	display: inline-block;
+	position: relative;
+	text-align: center;
+	width: 150px;
+	height: 220px;
+	margin: 5px;
+	@include transform-style(preserve-3d);
+	@include transition(transform 0.5s);
+	img {
+		height: 40%;
+		position: relative;
+		margin: 5px 0;
+		border-radius: 50%;
+		@include filter(sepia(50%));
+	}
+	.cardname {
+		margin-top: 10px;
+		color: $blue;
+		font-size: 16px;
+		font-weight: bold;
+	}
+	p {
+		margin: 0 5px;
+		font-size: 10px;
+	}
+}
+.front,
+.back {
+	position: absolute;
+	@include backface-visibility(hidden);
+	border-radius: 10px;
+	width: 100%;
+	height: 100%;
+	box-shadow: 5px 5px 5px rgba(#000, 0.5);
+	background: $white;
+}
+.back,
+.flipped {
+	@include transform(rotateY(180deg));
+}
+.front {
+	background-color: $white;
+	@include background-image(
+		linear-gradient(45deg, $silver 25%, transparent 25%, transparent 75%, $silver 75%, $silver),
+		linear-gradient(-45deg, $silver 25%, transparent 25%, transparent 75%, $silver 75%, $silver)
+		);
+	background-size:10px 10px;
+}
+#info {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 440px;
+	height: 180px;
+	margin: -95px 0 0 -220px;
+	padding-top: 10px;
+	text-align: center;
+	background: $blue;
+	border-radius: 10px;
+	box-shadow: 5px 5px 5px rgba(#000, 0.5);
+	color: $white;
+}
+#info button {
+	width: 90px;
+	height: 32px;
+	margin: 0 10px;
+	background: $silver;
+	border: none;
+}
+.hidden {
+	display: none;
+}
