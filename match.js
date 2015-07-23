@@ -11,7 +11,6 @@ function Match(cards) {
 	this.time = 1;
 	this.tries = 0;
 	this.matches = 0;
-	this.gameover = false;
 	this.create();
 }
 
@@ -34,7 +33,7 @@ Match.prototype = {
 		html.sort(this.shuffle);
 		this.cardsElement.innerHTML = html.join('');
 
-		var elements = document.getElementsByClassName('card');
+		var elements = document.getElementsByClassName('front');
 		for(var i = 0; i < elements.length; i++) {
 			elements[i].addEventListener('click', this.cardClicked.bind(this));
 		}
@@ -44,9 +43,6 @@ Match.prototype = {
 		var card = event.target.parentElement;
 		var game = this;
 
-		if (game.gameover) {
-			return;
-		}
 		if (game.selected.length === 0) {
 			card.classList.toggle('flipped');
 			game.selected.push(card);
@@ -58,7 +54,7 @@ Match.prototype = {
 			game.setTry();
 
 			if (game.selected[0].dataset.index ===
-				game.selected[1].dataset.index) {
+				card.dataset.index) {
 				//match
 				game.selected = [];
 				game.setMatch();
@@ -70,7 +66,6 @@ Match.prototype = {
 		if (game.matches === game.cards.length) {
 			// game over
 			clearInterval(game.timer);
-			this.gameover = true;
 			setTimeout(game.renderInfo.bind(game), 1000);
 		}
 	},
